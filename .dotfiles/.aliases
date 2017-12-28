@@ -1,0 +1,67 @@
+#   --------------------
+#   REMAPPING DEFAULTS
+#   --------------------
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -v'
+alias mkdir='mkdir -pv'
+alias ll='ls -olhps'
+alias lll='ls -olAhps'
+alias less='less -FSRXc'
+
+#   --------------------
+#   NAVIGATION
+#   --------------------
+alias ~="cd ~"
+alias ~~='cd /'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+#   --------------------
+#   SHORTCUTS
+#   --------------------
+alias desk='cd ~/Desktop'
+alias dow="cd ~/Downloads"
+alias doc='cd ~/Documents'
+
+#   --------------------
+#   SEARCHES
+#   --------------------
+alias qfind="find . -name "                   # Quickly search for file
+alias pid="ps -ef | grep -v 'grep' | grep "   # Find a process id by name
+
+#   --------------------
+#   FUNCTIONALITIES
+#   --------------------
+# Merge PDF files
+alias mergepdf="gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=merged.pdf"
+
+# Show the commit topology of a git repo
+alias gittopo="git log --graph --decorate --oneline"
+
+# Push all branches to remote
+alias gitpushtree="git push --all -u"
+
+# Delete all unused git branches
+alias gitdelimb="git branch --merged | grep -v \* | xargs git branch -d"
+
+# Update Homebrew, Homebrew casks, Ruby gems, apm and their installed packages
+alias update='brew update; brew upgrade; brew cleanup; brew cu -a; brew cask cleanup; apm update; apm upgrade; apm clean; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'

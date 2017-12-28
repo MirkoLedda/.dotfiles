@@ -1,0 +1,10 @@
+*
+!.gitignore
+!.dotfiles/
+!.dotfiles/*
+.dotfiles/.extras
+!.bashrc
+!.bash_profile
+!README.md
+!LICENSE.txt
+

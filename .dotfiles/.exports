@@ -1,0 +1,19 @@
+#   --------------------
+#   PATHS
+#   --------------------
+export PATH="$PATH:$HOME/bin/"  # User's binaries
+
+#   --------------------
+#   OTHERS
+#   --------------------
+# Make nano the default editor.
+export EDITOR='nano';
+
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL='ignoreboth';
+
+# Highlight section titles in manual pages.
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X';

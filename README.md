@@ -7,7 +7,7 @@ If you don't know what dotfiles are (e.g. `.bash_profile`) then **please stay aw
 <img src=".dotfiles/screenshot.png" width="60%">
 
 ## Installation
-No installation is required, just clone the content of this repo into your home directory with
+No installation is required. Before proceeding, I would suggest you backup your local dotfiles. Now, clone the content of this repo into your home directory with
 
 ```
 git clone https://github.com/MirkoLedda/.dotfiles ~

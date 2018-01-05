@@ -43,6 +43,9 @@ alias gittopo="git log --graph --decorate --oneline"
 # Push all branches to remote
 alias gitpushtree="git push --all -u"
 
+# Fetch and pull all branches from remote
+alias gitpulltree="git fetch --all; git pull --all"
+
 # Delete all unused git branches
 alias gitdelimb="git branch --merged | grep -v \* | xargs git branch -d"
 

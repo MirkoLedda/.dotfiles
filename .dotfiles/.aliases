@@ -49,9 +49,6 @@ alias gitpulltree="git fetch --all; git pull --all"
 # Delete all unused git branches
 alias gitdelimb="git branch --merged | grep -v \* | xargs git branch -d"
 
-# Update Homebrew, Homebrew casks, Ruby gems, apm and their installed packages
-alias update='brew update; brew upgrade; brew cleanup; brew cu -a; brew cask cleanup; apm update; apm upgrade; apm clean; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 

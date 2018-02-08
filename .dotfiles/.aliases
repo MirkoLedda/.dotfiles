@@ -46,9 +46,6 @@ alias gitpushtree="git push --all -u"
 # Fetch and pull all branches from remote
 alias gitpulltree="git fetch --all; git pull --all"
 
-# Delete all unused git branches
-alias gitdelimb="git branch --merged | grep -v \* | xargs git branch -d"
-
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 

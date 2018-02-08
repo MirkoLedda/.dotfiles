@@ -126,3 +126,13 @@ function tre() {
 function compresspdf() {
 	gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/printer -dCompatibilityLevel=1.4 -sOutputFile="$2" "$1"
 }
+
+# Delete git branches both locally and on the remote
+function gitdelimb() {
+  if [ $# -ne 0 ]; then
+	   git branch -d "$@";
+     git push origin --delete "$@";
+  fi;
+  git prune;
+  git remote prune origin;
+}

@@ -23,21 +23,24 @@ function cleanup() {
     else
         echo "no cleanup list found"
     fi;
+
+    # Get folder sizes
     csize="$(fs ${pcache} | cut -f1)"
     tsize="$(fs ${ptrash} | cut -f1)"
 
-    echo "Do you wish to remove cached files?"
+    # Start folder cleanup
+    echo "Do you wish to remove cached files (${csize} purgeable)?"
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) rm -rf ${pcache}; mkdir ${pcache}; echo "Reclaimed ${csize}"; break;;
+            Yes ) rm -rf ${pcache}; mkdir ${pcache}; break;;
             No ) break;;
         esac
     done
 
-    echo "Do you wish to empty the Trash?"
+    echo "Do you wish to empty the Trash (${tsize} purgeable)?"
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) rm -rf ${ptrash}; mkdir ${ptrash}; echo "Reclaimed ${tsize}"; break;;
+            Yes ) rm -rf ${ptrash}; mkdir ${ptrash}; break;;
             No ) break;;
         esac
     done

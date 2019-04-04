@@ -5,18 +5,42 @@ function gitac() {
 
 # Cleanup - remove all cached files and files listed in "cleanup.list"
 function cleanup() {
-    file="$HOME/.dotfiles/cleanup.list"
-    if [ -f "$file" ]; then
-        for f in $(cat "$file") ; do
+    # Get file paths
+    pcleanup="$HOME/.dotfiles/cleanup.list"
+    if [[ $OSTYPE == linux* ]]; then
+        pcache="$HOME/.cache/"
+        ptrash="$HOME/.local/share/Trash/"
+    elif [[ $OSTYPE == darwin* ]]; then
+        pcache="$HOME/Library/Caches/"
+        ptrash="$HOME/.Trash/"
+    fi;
+
+    if [ -f "$pcleanup" ]; then
+        for f in $(cat "$pcleanup") ; do
             echo "Search and remove $f"
             find $HOME -type f -name "$f" -ls -delete
         done
     else
         echo "no cleanup list found"
-    fi
-    size="$(fs .cache/ | cut -f1)"
-    rm -rf $HOME/.cache/*
-    echo "Reclaimed ${size}"
+    fi;
+    csize="$(fs ${pcache} | cut -f1)"
+    tsize="$(fs ${ptrash} | cut -f1)"
+
+    echo "Do you wish to remove cached files?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) rm -rf ${pcache}; mkdir ${pcache}; echo "Reclaimed ${csize}"; break;;
+            No ) break;;
+        esac
+    done
+
+    echo "Do you wish to empty the Trash?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) rm -rf ${ptrash}; mkdir ${ptrash}; echo "Reclaimed ${tsize}"; break;;
+            No ) break;;
+        esac
+    done
 }
 
 # Create a compressed tarball, using `zopfli`, `pigz` or `gzip` for compression

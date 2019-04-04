@@ -3,22 +3,20 @@ function gitac() {
     git add --all && git commit -m "$*"
 }
 
-# Deep cleanup - recursive search and remove all files listed in "cleanup.list"
+# Cleanup - remove all cached files and files listed in "cleanup.list"
 function cleanup() {
     file="$HOME/.dotfiles/cleanup.list"
     if [ -f "$file" ]; then
         for f in $(cat "$file") ; do
+            echo "Search and remove $f"
             find $HOME -type f -name "$f" -ls -delete
         done
-        echo "... all neat and tidy"
     else
         echo "no cleanup list found"
     fi
-}
-
-function deepcleanup() {
-    cleanup
+    size="$(fs .cache/ | cut -f1)"
     rm -rf $HOME/.cache/*
+    echo "Reclaimed ${size}"
 }
 
 # Create a compressed tarball, using `zopfli`, `pigz` or `gzip` for compression

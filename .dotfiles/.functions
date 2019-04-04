@@ -4,7 +4,7 @@ function gitac() {
 }
 
 # Deep cleanup - recursive search and remove all files listed in "cleanup.list"
-function deepcleanup() {
+function cleanup() {
     file="$HOME/.dotfiles/cleanup.list"
     if [ -f "$file" ]; then
         for f in $(cat "$file") ; do
@@ -14,6 +14,11 @@ function deepcleanup() {
     else
         echo "no cleanup list found"
     fi
+}
+
+function deepcleanup() {
+    cleanup
+    rm -rf $HOME/.cache/*
 }
 
 # Create a compressed tarball, using `zopfli`, `pigz` or `gzip` for compression
@@ -106,10 +111,18 @@ function gz() {
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-    if [ $# -eq 0 ]; then
-        open .;
-    else
-        open "$@";
+    if [[ $OSTYPE == linux* ]]; then
+        if [ $# -eq 0 ]; then
+            xdg-open .;
+        else
+            xdg-open "$@";
+        fi;
+    elif [[ $OSTYPE == darwin* ]]; then
+        if [ $# -eq 0 ]; then
+            open .;
+        else
+            open "$@";
+        fi;
     fi;
 }
 

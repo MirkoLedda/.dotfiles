@@ -18,7 +18,7 @@ function cleanup() {
     if [ -f "$pcleanup" ]; then
         for f in $(cat "$pcleanup") ; do
             echo "Search and remove $f"
-            find $HOME -type f -name "$f" -ls -delete
+            find $HOME -type f -name "$f" -ls -delete 2>/dev/null
         done
     else
         echo "no cleanup list found"
